@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './routes/Home';
+import Detail from './routes/Detail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/movie/:id" element={<Detail />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+// async function getMovies() {
+//   try {
+//     const response = await fetch(
+//       `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
+//     );
+
+//     const json = await response.json();
+//      setMovies(json.data.data.movies);
+//     setLoding(false);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+// useEffect(() => {
+//   getMovies();
+// }, []);
+// console.log(movies);
